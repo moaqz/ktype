@@ -1,8 +1,13 @@
 <script>
   import "virtual:uno.css";
-  import "@unocss/reset/tailwind-compat.css";
+  import "@unocss/reset/tailwind.css";
+
+  import Header from "$lib/components/header.svelte";
+  import Footer from "$lib/components/footer.svelte";
 </script>
 
-<div class="bg-dark text-white min-h-screen px-4">
+<div class="bg-chaos-bg text-chaos-text min-h-screen">
+  <Header />
   <slot />
+  <Footer />
 </div>
