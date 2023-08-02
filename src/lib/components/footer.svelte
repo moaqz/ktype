@@ -2,8 +2,8 @@
   import { CodeIcon, InfoIcon } from "$lib/icons";
 </script>
 
-<footer class="fixed bottom-0 w-full">
-  <div class="flex justify-between px-3 py-6 max-w-6xl mx-auto text-chaos-sub">
+<footer>
+  <div class="flex justify-between py-6 px-3 max-w-6xl mx-auto text-chaos-sub">
     <ul
       class="flex items-center gap-3 [&>li>a]:(flex items-center gap-1.5 transition-colors duration-200)"
     >
