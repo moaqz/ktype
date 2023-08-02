@@ -1,6 +1,6 @@
 <script>
   import { DISABLED_KEYS } from "$lib/constants";
-  import { PointerIcon, RestartIcon } from "$lib/icons";
+  import TestControls from "./test-controls.svelte";
   import { clsx } from "clsx";
 
   /** @type {string} */
@@ -104,31 +104,4 @@
   </pre>
 </div>
 
-<div class="text-chaos-sub space-y-3 flex flex-col items-center">
-  {#if isGameStarted}
-    <button
-      class="flex items-center justify-center gap-2 text-white font-semibold rounded-md px-4 py-2 shadow-md bg-chaos-subalt transition-colors text-chaos-text mt-4 hover:(bg-chaos-text text-chaos-bg)"
-      aria-label="Restart Test"
-      title="Restart Test"
-      on:click={resetTest}
-    >
-      <RestartIcon />
-      <span>Restart game</span>
-    </button>
-
-    <p class="font-semibold">
-      <kbd class="rounded-md bg-chaos-sub text-black text-sm px-2 py-0.5">
-        esc
-      </kbd>
-      <span>- restart test</span>
-    </p>
-  {:else}
-    <button
-      class="flex items-center justify-center gap-2 text-white font-semibold rounded-md px-4 py-2 shadow-md bg-chaos-subalt transition-colors text-chaos-text mt-4 hover:(bg-chaos-text text-chaos-bg) mx-auto"
-      on:click={startTest}
-    >
-      <PointerIcon />
-      <span>Click to start test</span>
-    </button>
-  {/if}
-</div>
+<TestControls {isGameStarted} resetFn={resetTest} startFn={startTest} />
