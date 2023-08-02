@@ -13,7 +13,7 @@ export default defineConfig({
         text: "#dde5ed",
         error: "#fd77d7",
         sub: "#676e8a",
-        "subalt": "#1e1d2f",
+        subalt: "#1e1d2f",
       },
     },
   },

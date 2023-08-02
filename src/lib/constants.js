@@ -19,5 +19,5 @@ export const DISABLED_KEYS = [
   "Tab",
   "ArrowRight",
   "ArrowLeft",
-  "Backspace"
+  "Backspace",
 ];
