@@ -3,7 +3,7 @@
   import { PointerIcon, RestartIcon } from "$lib/icons";
 
   /** @type {boolean} */
-  export let isGameStarted;
+  export let hasGameStarted;
 
   /** @type {() => void} */
   export let resetFn;
@@ -13,7 +13,7 @@
 </script>
 
 <div class="text-chaos-sub space-y-3 flex flex-col items-center">
-  {#if isGameStarted}
+  {#if hasGameStarted}
     <Button text="Restart game" icon={RestartIcon} on:click={resetFn} />
 
     <p class="font-semibold">

@@ -1,21 +1,24 @@
 <script>
   import { DISABLED_KEYS } from "$lib/constants";
-  import TestControls from "./test-controls.svelte";
   import { clsx } from "clsx";
+  import TestControls from "./test-controls.svelte";
+  import TestStats from "./test-stats.svelte";
 
   /** @type {string} */
   export let quote;
 
   /** @type {HTMLInputElement}*/
-  let inputRef;
+  let inputElement;
+
+  /** @type {Date | null} */
+  let startDate = null;
+  /** @type {Date | null} */
+  let endDate = null;
 
   let cursorPosition = 0;
   let totalErrors = 0;
-  let userTypedText = "";
-  let isGameStarted = false;
-
-  /** @type {Date | null} */
-  let startedDate = null;
+  let typedText = "";
+  let hasGameStarted = false;
 
   /** @param {KeyboardEvent} e */
   function handleKeyDown(e) {
@@ -25,7 +28,7 @@
     }
 
     if ((e.altKey && e.key === "Enter") || e.key === "Tab") {
-      inputRef.blur();
+      inputElement.blur();
       return;
     }
 
@@ -40,10 +43,15 @@
     }
   }
 
-  /** @param {Event} e */
+  /** @param {Event} e  */
   function handleInputEvent(e) {
     if (!(e instanceof InputEvent)) {
       return;
+    }
+
+    if (!hasGameStarted) {
+      startDate = new Date();
+      hasGameStarted = true;
     }
 
     const key = e.data;
@@ -52,42 +60,58 @@
       totalErrors++;
     }
 
-    userTypedText += key;
+    typedText += key;
     cursorPosition++;
   }
 
+  /**
+   * Resets test to its initial state.
+   */
   function resetTest() {
     cursorPosition = 0;
     totalErrors = 0;
-    userTypedText = "";
-    inputRef.value = "";
-    inputRef.focus();
-    startedDate = null;
-    isGameStarted = false;
+    typedText = "";
+    inputElement.value = "";
+    inputElement.focus();
+    startDate = null;
+    hasGameStarted = false;
+    endDate = null;
   }
 
   function startTest() {
-    isGameStarted = true;
-    startedDate = new Date();
-    inputRef.focus();
+    hasGameStarted = true;
+    startDate = new Date();
+    inputElement.focus();
+  }
+
+  $: {
+    if (cursorPosition === quote.length) {
+      endDate = new Date();
+    }
   }
 </script>
+
+{#if startDate && endDate}
+  <TestStats {totalErrors} {startDate} {endDate} {quote} />
+{/if}
 
 <div
   class="p-4 rounded border-2 border-transparent shadow bg-chaos-subalt relative focus-within:border-chaos-main"
 >
   <input
     type="text"
-    class="-z-1 absolute left-0 top-0 w-full h-full"
+    class="absolute left-0 top-0 z-50 h-full w-full cursor-default opacity-0"
     autocomplete="off"
     disabled={cursorPosition === quote.length}
-    tabindex={isGameStarted ? 0 : -1}
-    bind:this={inputRef}
+    bind:this={inputElement}
     on:keydown={handleKeyDown}
     on:input={handleInputEvent}
+    on:paste={(e) => e.preventDefault()}
   />
 
-  <pre class="flex flex-wrap text-chaos-sub text-2xl">
+  <div
+    class="text-2xl text-chaos-sub text-center text-balance leading-relaxed transition-all duration-200"
+  >
     {#each quote as letter, idx}
       <span
         class={clsx({
@@ -95,13 +119,12 @@
             cursorPosition === idx && letter === " ",
           "animate-pulse border-l border-l-chaos-caret": cursorPosition === idx,
           "text-red underline":
-            userTypedText[idx] != null && userTypedText[idx] !== quote[idx],
-          "text-white":
-            userTypedText[idx] != null && userTypedText[idx] === quote[idx],
+            typedText[idx] != null && typedText[idx] !== quote[idx],
+          "text-white": typedText[idx] != null && typedText[idx] === quote[idx],
         })}>{letter}</span
       >
     {/each}
-  </pre>
+  </div>
 </div>
 
-<TestControls {isGameStarted} resetFn={resetTest} startFn={startTest} />
+<TestControls {hasGameStarted} resetFn={resetTest} startFn={startTest} />
