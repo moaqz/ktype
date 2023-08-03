@@ -1,5 +1,5 @@
 <script>
-  import { CodeIcon, InfoIcon } from "$lib/icons";
+  import { CodeIcon, InfoIcon, MonkeytypeIcon } from "$lib/icons";
 </script>
 
 <footer>
@@ -18,14 +18,16 @@
           <span>Github</span>
         </a>
       </li>
-      <li>
-        <a href="/about" class="hover:text-white">
-          <InfoIcon />
-          <span>About</span>
-        </a>
-      </li>
     </ul>
 
-    <p class="font-700">v0.0.1</p>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://monkeytype.com"
+      class="inline-flex gap-1 items-center hover:text-white transition-colors duration-200 font-semibold"
+    >
+      <span>Inspired by</span>
+      <MonkeytypeIcon />
+    </a>
   </div>
 </footer>
