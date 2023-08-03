@@ -98,16 +98,17 @@
 <div
   class="p-4 rounded border-2 border-transparent shadow bg-chaos-subalt relative focus-within:border-chaos-main"
 >
-  <input
-    type="text"
-    class="absolute left-0 top-0 z-50 h-full w-full cursor-default opacity-0"
-    autocomplete="off"
-    disabled={cursorPosition === quote.length}
-    bind:this={inputElement}
-    on:keydown={handleKeyDown}
-    on:input={handleInputEvent}
-    on:paste={(e) => e.preventDefault()}
-  />
+  {#if cursorPosition !== quote.length}
+    <input
+      type="text"
+      class="absolute left-0 top-0 z-50 h-full w-full cursor-default opacity-0"
+      autocomplete="off"
+      bind:this={inputElement}
+      on:keydown={handleKeyDown}
+      on:input={handleInputEvent}
+      on:paste={(e) => e.preventDefault()}
+    />
+  {/if}
 
   <div
     class="text-2xl text-chaos-sub text-center text-balance leading-relaxed transition-all duration-200"
