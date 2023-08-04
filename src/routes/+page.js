@@ -1,25 +1,19 @@
 export const ssr = false;
 
-import { VALID_LANGS } from '$lib/constants';
+import { getRandomWords } from '$lib/words';
+import { error } from '@sveltejs/kit';
 
-/** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
-  let lang = "english"
-  const selectedLang = localStorage.getItem("selectedLang")
+  const res = await fetch(`/langugages/english_1k.json`);
 
-  if (selectedLang != null) {
-    let parsedLang = JSON.parse(selectedLang)
+  if (!res.ok) {
+    throw error(404);
+  };
 
-    if (typeof parsedLang === "string" && VALID_LANGS.includes(parsedLang)) {
-      lang = parsedLang
-    }
-  }
-
-  const res = await fetch(`/data/${lang}.json`)
-  const data = await res.json()
-  const index = Math.floor(Math.random() * data.length)
+  const data = await res.json();
+  const selectedWords = getRandomWords(data, 25);
 
   return {
-    quote: data[index].text,
+    sentence: selectedWords.join(" "),
   };
 }

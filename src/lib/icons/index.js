@@ -5,5 +5,6 @@ import UserIcon from "./user.svelte";
 import InfoIcon from "./info.svelte";
 import CodeIcon from "./code.svelte";
 import MonkeytypeIcon from "./monkeytype.svelte";
+import HouseIcon from "./house.svelte";
 
-export { RestartIcon, PointerIcon, CrownIcon, UserIcon, InfoIcon, CodeIcon, MonkeytypeIcon };
+export { RestartIcon, PointerIcon, CrownIcon, UserIcon, InfoIcon, CodeIcon, MonkeytypeIcon, HouseIcon };

@@ -21,9 +21,3 @@ export const DISABLED_KEYS = [
   "ArrowLeft",
   "Backspace",
 ];
-
-export const VALID_LANGS = [
-  "english",
-  "spanish",
-  "portuguese",
-];

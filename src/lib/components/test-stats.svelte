@@ -10,11 +10,11 @@
   export let endDate;
 
   /** @type {string} */
-  export let quote;
+  export let sentence;
 
-  const totalWords = quote.split(" ").length;
-  const totalCharacters = quote.length;
-  
+  const totalWords = sentence.split(" ").length;
+  const totalCharacters = sentence.length;
+
   const wpm = calculateWPM(totalWords, startDate, endDate);
   const acc = calculateAccuracy(totalCharacters, totalErrors);
 </script>
