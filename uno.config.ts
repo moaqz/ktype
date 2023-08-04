@@ -12,7 +12,7 @@ export default defineConfig({
         caret: "#dde5ed",
         text: "#dde5ed",
         error: "#fd77d7",
-        sub: "#676e8a",
+        sub: "#9ca3af",
         subalt: "#1e1d2f",
       },
     },
