@@ -38,7 +38,7 @@ test("Game should start by focusing/clicking the input and typing", async ({
   ).toBeVisible();
 });
 
-test("Can successfully completed a practice race", async ({ page }) => {
+test("Can successfully completed a test", async ({ page }) => {
   // Get the sentence that the user should write.
   const wordsWrapper = page.getByTestId("words-wrapper");
   const sentence = await wordsWrapper.textContent();
