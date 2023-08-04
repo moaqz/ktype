@@ -113,6 +113,7 @@
 
   <div
     class="text-2xl text-chaos-sub text-center text-balance leading-relaxed transition-all duration-200"
+    data-testid="words-wrapper"
   >
     {#each sentence as letter, idx}
       <span

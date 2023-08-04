@@ -1,6 +1,6 @@
 /**
  * Calculates Words Per Minute (WPM)
- * 
+ *
  * @param {number} totalWords
  * @param {Date} startDate
  * @param {Date} endDate
@@ -29,7 +29,7 @@ export function calculateAccuracy(totalCharacters, errorsCount) {
 
   if (isNaN(accuracy)) {
     return 0;
-  };
+  }
 
   return accuracy;
-};
+}

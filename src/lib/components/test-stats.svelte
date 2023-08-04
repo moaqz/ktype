@@ -21,6 +21,7 @@
 
 <div
   class="flex items-center gap-3 mb-4 text-xl [&>div>:first-child]:(text-chaos-sub font-500)"
+  data-testid="test-results"
 >
   <div>
     <span>Accuracy:</span>
